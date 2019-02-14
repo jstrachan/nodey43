@@ -35,6 +35,7 @@ pipeline {
 
         // creates ./VERSION we can use later
         sh "jx step next-version --filename package.json"
+        sh "git add VERSION"
         sh "jx step tag --version \$(cat VERSION)"
         sh "npm install"
         sh "CI=true DISPLAY=:99 npm test"
