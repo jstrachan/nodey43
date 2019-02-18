@@ -1,73 +1,143 @@
 Step: build-step-credential-initializer:
 
-{"level":"warn","ts":1550146601.4428864,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1550146601.4437492,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
-Step: build-step-git-source-0:
+{"level":"warn","ts":1550501242.7333696,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1550501242.7337751,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Step: build-step-git-source-source:
 
-{"level":"warn","ts":1550146604.0280962,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1550146605.4709144,"logger":"fallback-logger","caller":"git-init/main.go:92","msg":"Successfully cloned \"https://github.com/jstrachan/nodey43.git\" @ \"master\" in path \"/workspace\""}
-Step: build-step-jenkins:
+{"level":"warn","ts":1550501245.7690399,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1550501246.9839125,"logger":"fallback-logger","caller":"git-init/main.go:92","msg":"Successfully cloned \"https://github.com/jstrachan/nodey43\" @ \"master\" in path \"/workspace/source\""}
+Step: build-step-place-tools:
 
-Picked up _JAVA_OPTIONS: -Xmx400m
-Started
-Running in Durability level: PERFORMANCE_OPTIMIZED
-  18.994 [id=31]	WARNING	i.f.k.c.i.VersionUsageUtils#alert: The client is using resource type 'customresourcedefinitions' with unstable version 'v1beta1'
-[Pipeline] node
-Running on Jenkins in /tmp/jenkinsTests.tmp/jenkins8475463893754481838test/workspace/job
-[Pipeline] {
-[Pipeline] stage
-[Pipeline] { (Declarative: Checkout SCM)
-[Pipeline] checkout
-[Pipeline] }
-[Pipeline] // stage
-[Pipeline] withCredentials
-[Pipeline] {
-[Pipeline] withEnv
-[Pipeline] {
-[Pipeline] stage
-[Pipeline] { (CI Build and push snapshot)
-Stage "CI Build and push snapshot" skipped due to when conditional
-[Pipeline] }
-[Pipeline] // stage
-[Pipeline] stage
-[Pipeline] { (Build Release)
-[Pipeline] git
- > git rev-parse --is-inside-work-tree # timeout=10
-Fetching changes from the remote Git repository
- > git config remote.origin.url https://github.com/jstrachan/nodey43.git # timeout=10
-Fetching upstream changes from https://github.com/jstrachan/nodey43.git
- > git --version # timeout=10
- > git fetch --tags --progress https://github.com/jstrachan/nodey43.git +refs/heads/*:refs/remotes/origin/*
- > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
- > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
-Checking out Revision 981070f6168f0e14a11c2ce0bad0b7a404c92af7 (refs/remotes/origin/master)
- > git config core.sparsecheckout # timeout=10
- > git checkout -f 981070f6168f0e14a11c2ce0bad0b7a404c92af7
- > git branch -a -v --no-abbrev # timeout=10
- > git branch -D master # timeout=10
- > git checkout -b master 981070f6168f0e14a11c2ce0bad0b7a404c92af7
-Commit message: "Draft create"
-First time build. Skipping changelog.
-[Pipeline] sh
-+ jx step next-version --filename package.json
-error: failed to run 'git commit -m Release 1.0.0' command in directory '', output: 'On branch master
-Untracked files:
-	VERSION
+Step: build-step-setup-jx-git-credentials:
 
-nothing added to commit but untracked files present'
-[Pipeline] }
-[Pipeline] // stage
-[Pipeline] stage
-[Pipeline] { (Promote to Environments)
-Stage "Promote to Environments" skipped due to earlier failure(s)
-[Pipeline] }
-[Pipeline] // stage
-[Pipeline] }
-[Pipeline] // withEnv
-[Pipeline] }
-[Pipeline] // withCredentials
-[Pipeline] }
-[Pipeline] // node
-[Pipeline] End of Pipeline
-ERROR: script returned exit code 1
-Finished: FAILURE
+Generated Git credentials file /home/jenkins/git/credentials
+Step: build-step-setversion-next-version:
+
+created new version: 1.0.5 and written to file: ./VERSION
+Step: build-step-setversion-step4:
+
+Step: build-step-setversion-tag-version:
+
+Tag v1.0.5 created and pushed to remote origin
+Step: build-step-build-npm-install:
+
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN REPLACE_ME@1.0.5 No repository field.
+npm WARN REPLACE_ME@1.0.5 No license field.
+
+up to date in 0.506s
+found 0 vulnerabilities
+
+Step: build-step-build-npm-test:
+
+
+> REPLACE_ME@1.0.5 test /workspace/source
+> echo "no test specified" && exit 0
+
+no test specified
+Step: build-step-build-container-build:
+
+time="2019-02-18T14:49:25Z" level=warning msg="config version (skaffold/v1beta2) out of date: upgrading to latest (skaffold/v1beta3)"
+Starting build...
+Building [changeme]...
+Sending build context to Docker daemon  142.3kB
+Step 1/6 : FROM node:9-slim
+9-slim: Pulling from library/node
+5bba3ecb4cd6: Pulling fs layer
+196b8e3c919d: Pulling fs layer
+7d083412657b: Pulling fs layer
+a88538b9cd05: Pulling fs layer
+e01bd28a434b: Pulling fs layer
+a88538b9cd05: Waiting
+e01bd28a434b: Waiting
+196b8e3c919d: Verifying Checksum
+196b8e3c919d: Download complete
+7d083412657b: Verifying Checksum
+7d083412657b: Download complete
+5bba3ecb4cd6: Verifying Checksum
+5bba3ecb4cd6: Download complete
+e01bd28a434b: Verifying Checksum
+e01bd28a434b: Download complete
+a88538b9cd05: Verifying Checksum
+a88538b9cd05: Download complete
+5bba3ecb4cd6: Pull complete
+196b8e3c919d: Pull complete
+7d083412657b: Pull complete
+a88538b9cd05: Pull complete
+e01bd28a434b: Pull complete
+Digest: sha256:288b29c1925d65b2d7d8701f8ada201e7dcd066438c0fb4299c35dff129b893f
+Status: Downloaded newer image for node:9-slim
+ ---> e20bb4abe4ee
+Step 2/6 : ENV PORT 8080
+ ---> Running in c9c79ed02abc
+ ---> 59c09a712f88
+Step 3/6 : EXPOSE 8080
+ ---> Running in 94e62d4b6550
+ ---> 8ba88c201c98
+Step 4/6 : WORKDIR /usr/src/app
+ ---> 16d13dcd64bb
+Step 5/6 : COPY . .
+ ---> c2b0e08aa636
+Step 6/6 : CMD npm start
+ ---> Running in ae1ed8bf3177
+ ---> 1e89914530b6
+Successfully built 1e89914530b6
+The push refers to a repository [10.55.254.186:5000/jstrachan/nodey43]
+82c84b4e5541: Preparing
+e868a8009115: Preparing
+e16c226cf2a8: Preparing
+7fd597d009e4: Preparing
+7c6ab5fb7059: Preparing
+ed271eac23e9: Preparing
+156ff16f37e4: Preparing
+ed271eac23e9: Waiting
+156ff16f37e4: Waiting
+7c6ab5fb7059: Pushed
+e868a8009115: Pushed
+82c84b4e5541: Pushed
+e16c226cf2a8: Pushed
+ed271eac23e9: Pushed
+156ff16f37e4: Pushed
+7fd597d009e4: Pushed
+1.0.5: digest: sha256:571d25d1358ad48ebbbe88e29d5ac4175576c25e36611009b9c0bab2e3c57c55 size: 1786
+Build complete in 23.201272131s
+Starting test...
+Test complete in 11.784µs
+changeme -> 10.55.254.186:5000/jstrachan/nodey43:1.0.5
+There is a new version (0.23.0) of skaffold available. Download it at https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+
+Step: build-step-build-post-build:
+
+no CVE provider running in the current jx namespace so skip adding image to be analysed
+Step: build-step-promote-changelog:
+
+Converted /workspace/source/charts/nodey43 to an unshallow repository
+Generating change log from git ref 29d789031d0d26a6f7bf56264d74c2ca4f4a2239 => f6b5cfb27e5d186aecaafa97a75e3e09255efc1f
+Failed to enrich commits with issues: User.jenkins.io "" is invalid: metadata.name: Required value: name or generateName is required
+Failed to enrich commits with issues: User.jenkins.io "" is invalid: metadata.name: Required value: name or generateName is required
+Finding issues in commit messages using git format
+No release found for jstrachan/nodey43 and tag v1.0.5 so creating a new release
+Updated the release information at https://github.com/jstrachan/nodey43/releases/tag/v1.0.5
+generated: /workspace/source/charts/nodey43/templates/release.yaml
+Created Release nodey43-1-0-5 resource in namespace jx
+Updating PipelineActivity jstrachan-nodey43-master-1 with version 1.0.5
+Updated PipelineActivities jstrachan-nodey43-master-1 with release notes URL: https://github.com/jstrachan/nodey43/releases/tag/v1.0.5
+Step: build-step-promote-helm-release:
+
+No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: jenkins-x http://chartmuseum.jenkins-x.io
+Successfully added Helm repository jenkins-x.
+Adding missing Helm repo: releases http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository releases.
+No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Uploading chart file nodey43-1.0.5.tgz to http://jenkins-x-chartmuseum:8080/api/charts
+Received 201 response: {"saved":true}
+Step: build-step-promote-jx-promote:
+
+prow based install so skip waiting for the merge of Pull Requests to go green as currently there is an issue with gettingstatuses from the PR, see https://github.com/jenkins-x/jx/issues/2410
+Promoting app nodey43 version 1.0.5 to namespace jx-staging
+Created Pull Request: https://github.com/jstrachan/environment-jstrachan-kp2-staging/pull/1
+
+Pull Request https://github.com/jstrachan/environment-jstrachan-kp2-staging/pull/1 is merged at sha e1fbec63dce145bd5a1a07a6bfa8d28dab90d402
+Pull Request merged but we are not waiting for the update pipeline to complete!
+Could not find the service URL in namespace jx-staging for names nodey43, jx-nodey43, jx-staging-nodey43
